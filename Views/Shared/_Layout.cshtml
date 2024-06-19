@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Bug Tracking System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="/">Bug Tracking System</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Contact">Contact</a>
+                        </li>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Quality Assurance"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="bugsDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Bugs
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="bugsDropdown">
+                                        <a class="dropdown-item" href="/Bug">Bug List</a>
+                                        <a class="dropdown-item" href="/Bug/Create">Create Bug</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (User.IsInRole("Research and Development"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Bug">Bug List</a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Project Manager"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="featureRequestDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Feature Requests
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="featureRequestDropdown">
+                                        <a class="dropdown-item" href="#">View Feature Requests</a>
+                                        <a class="dropdown-item" href="#">Create Feature Request</a>
+                                    </div>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="LogoutPost" method="post">
+                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Account/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-light text-primary" href="/Account/Register">Get Started</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="jumbotron jumbotron-fluid text-center bg-primary text-light">
+        <div class="container">
+            <h1 class="display-4">Welcome to Bug Tracking System</h1>
+            <p class="lead">Track, manage, and resolve bugs efficiently.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-dark text-light mt-4">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="mailto:support@bugtrackingsystem.com" class="text-light">Email: support@bugtrackingsystem.com</a></li>
+                        <li><a href="tel:+1234567890" class="text-light">Phone: +1234567890</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Facebook</a></li>
+                        <li><a href="#" class="text-light">Twitter</a></li>
+                        <li><a href="#" class="text-light">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>About</h5>
+                    <p class="text-muted">Welcome to Bug Tracking System, your go-to platform for efficiently managing and resolving software issues. Our mission is to streamline the bug tracking process, empowering teams to deliver flawless software solutions.</p>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; @DateTime.Now.Year - Bug Tracking System</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs9CTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="~/lib/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-4Mzrn1TEQh8zscy8KsZ+qUyA7TMF/8g+Bo/xjWBuYL2HA+8W5WvI/4UtyPjbjjIS4"
+            crossorigin="anonymous"></script>
+</body>
+</html>

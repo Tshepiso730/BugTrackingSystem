@@ -1,0 +1,23 @@
+﻿@* Views/Shared/_ValidationScriptsPartial.cshtml *@
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@inject IHtmlHelper HtmlHelper
+
+@{
+    var environment = HtmlHelper.ViewContext.HttpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+    bool isDevelopment = environment.IsDevelopment();
+}
+
+@if (isDevelopment)
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+}
+else
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.3/jquery.validate.min.js"
+            integrity="sha512-v9e+8qJbHpJE8KUfL1c3O3FBy/9UuaaPWKuc1e4D9l1Xz/fuN8DVbIGsE6AjdAnKSkCQ6f8fpWGeTU/M6bY7JQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"
+            integrity="sha512-h0Ebg/yf7UxgDgrM8ky9HwFLyEzeNkOSM8DpF5X4lAtVqC3gP3F9k6QkGuS7jyDwNf4qI6N3p8X7BcDGW+PjSg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

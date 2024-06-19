@@ -1,0 +1,59 @@
+/* Custom styles for Bug Tracking System */
+
+/* Navbar styles */
+.navbar {
+    background-color: #6c757d; /* Medium gray background */
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff; /* White text */
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    color: #fff; /* White text */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #007bff; /* Blue highlight on hover */
+    }
+
+.navbar-nav .btn-light {
+    color: #007bff; /* Blue button text color */
+    border-color: #007bff; /* Blue button border color */
+}
+
+    .navbar-nav .btn-light:hover {
+        background-color: #007bff; /* Blue button background on hover */
+        border-color: #007bff; /* Blue button border on hover */
+    }
+
+/* Jumbotron styles */
+.jumbotron {
+    background-color: #6c757d; /* Medium gray background */
+    color: #fff; /* White text */
+    padding: 6rem 0;
+    margin-bottom: 0;
+}
+
+    .jumbotron h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+    }
+
+    .jumbotron p {
+        font-size: 1.5rem;
+    }
+
+/* Footer styles */
+footer {
+    background-color: #6c757d; /* Medium gray background */
+    color: #fff; /* White text */
+    text-align: center;
+    padding: 1rem 0;
+}

@@ -1,0 +1,14 @@
+﻿@model BugTrackingSystem.Models.User
+
+@{
+    ViewData["Title"] = "Logout";
+}
+
+<h2>Logout</h2>
+
+<div class="alert alert-success">
+    You have been successfully logged out.
+</div>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Go to Home</a>
+<a asp-controller="Account" asp-action="Login" class="btn btn-secondary">Login Again</a>
